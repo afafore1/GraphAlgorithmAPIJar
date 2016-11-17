@@ -13,9 +13,13 @@ public class Compute {
 	public JSONObject Save(IGraph graph, GraphAlgos graphAlgo) throws JSONException
 	{
 		JSONObject result = new JSONObject();
-		String vertexJson = _gson.toJson(graph.GetVertices());
-		String edgeJson = _gson.toJson(graph.GetEdges());
-		String failedVertices = _gson.toJson(graphAlgo.GetFailedVertices());
+		String vertexJson = _gson.toJson(graph.GetVertices()).trim();
+		String edgeJson = _gson.toJson(graph.GetEdges()).trim();
+		String failedVertices = _gson.toJson(graphAlgo.GetFailedVertices()).trim();
+		if(graphAlgo.GetFailedVertices().isEmpty())
+		{
+			failedVertices = "{}";
+		}
 		JSONObject vertJson = new JSONObject(vertexJson); 
 		JSONObject edgeJsonObject = new JSONObject(edgeJson);
 		JSONObject failedJsonObject = new JSONObject(failedVertices);
