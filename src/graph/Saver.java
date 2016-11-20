@@ -1,27 +1,23 @@
-package func;
+package graph;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.gson.Gson;
-
 import algorithms.GraphAlgos;
-import graph.IGraph;
 
-public class Compute {
-	Gson _gson = new Gson();	
+public class Saver {
+
 	public JSONObject Save(IGraph graph, GraphAlgos graphAlgo) throws JSONException
 	{
+		//Gson gson = new Gson();
 		JSONObject result = new JSONObject();
-		String vertexJson = _gson.toJson(graph.GetVertices()).trim();
-		String edgeJson = _gson.toJson(graph.GetEdges()).trim();
-		String failedVertices = _gson.toJson(graphAlgo.GetFailedVertices()).trim();
+		JSONObject vertJson = new JSONObject(graph.GetVertices()); 
+		JSONObject edgeJsonObject = new JSONObject(graph.GetEdges());
+		JSONObject failedVertices = new JSONObject(graphAlgo.GetFailedVertices());
 		if(graphAlgo.GetFailedVertices().isEmpty())
 		{
-			failedVertices = "{}";
+			failedVertices = new JSONObject("{}");
 		}
-		JSONObject vertJson = new JSONObject(vertexJson); 
-		JSONObject edgeJsonObject = new JSONObject(edgeJson);
 		JSONObject failedJsonObject = new JSONObject(failedVertices);
 		result.put("vertices", vertJson);
 		result.put("edges", edgeJsonObject);

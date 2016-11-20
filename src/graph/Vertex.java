@@ -1,6 +1,5 @@
 package graph;
 import java.awt.Point;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class Vertex {
@@ -9,7 +8,6 @@ public class Vertex {
     private Vertex _parent = null;
     private Point _location;
     private HashSet<Edge> _eList = new HashSet<>();
-    private HashMap<Integer, Edge> _path; // vertex shouldn't have path
     private int _id;
     private int _cap;
     private String _type;
